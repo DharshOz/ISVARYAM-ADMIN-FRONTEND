@@ -1,0 +1,252 @@
+/* header.module.css */
+
+.header {
+  background-color: #131921;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 1.5rem;
+  max-width: 1500px;
+  margin: 0 auto;
+  position: relative; /* Added for dropdown positioning */
+}
+
+.logo {
+  color: white;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-decoration: none;
+  font-family: 'Amazon Ember', Arial, sans-serif;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo:hover {
+  color: #febd69;
+}
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.nav {
+  display: flex;
+  transition: all 0.3s ease;
+}
+
+.nav_links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav_links li {
+  position: relative;
+}
+
+.nav_links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+
+.nav_links a:hover {
+  color: #febd69;
+}
+
+/* Dropdown menu styles - fixed position */
+.dropdown_menu {
+  position: fixed; /* Changed from absolute to fixed */
+  top: 60px; /* Adjust based on your header height */
+  left: 0;
+  width: 100%;
+  background-color: #131921;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 99;
+  padding: 1rem;
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.dropdown_menu.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Rest of your existing styles... */
+
+.cart_count {
+  background-color: #f08804;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  margin-left: 0.3rem;
+  font-weight: bold;
+}
+
+/* Admin links styling */
+.nav_links li:nth-last-child(3) a,
+.nav_links li:nth-last-child(4) a {
+  color: #febd69;
+  font-weight: 600;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .container {
+    padding: 0.8rem 1rem;
+  }
+
+  .hamburger {
+    display: block;
+    order: 2;
+  }
+
+  .logo {
+    order: 1;
+    font-size: 1.5rem;
+  }
+
+  .nav {
+    position: fixed;
+    top: 60px;
+    right: -100%;
+    background-color: #131921;
+    width: 70%;
+    max-width: 300px;
+    height: calc(100vh - 60px);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem 1.5rem;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+  }
+
+  .nav.open {
+    right: 0;
+  }
+
+  .nav_links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .nav_links li {
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.8rem;
+  }
+
+  .nav_links li:last-child {
+    border-bottom: none;
+  }
+
+  .nav_links a {
+    padding: 0.3rem 0;
+    width: 100%;
+  }
+
+  /* Mobile dropdown menu */
+  .dropdown_menu {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: auto;
+    transform: translateY(-100%);
+  }
+
+  .dropdown_menu.open {
+    transform: translateY(0);
+  }
+}
+
+/* Animation for cart count */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.cart_count {
+  animation: pulse 0.5s ease-in-out;
+}
+
+/* Hover effects for better UX */
+.nav_links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #febd69;
+  transition: width 0.3s ease;
+}
+
+.nav_links a:hover::after {
+  width: 100%;
+}
+
+/* Special styling for logout */
+.nav_links li:has(a[onclick]) a {
+  color: #ff6b6b;
+}
+
+.nav_links li:has(a[onclick]) a:hover {
+  color: #ff3838;
+}
+
+/* Add this to your existing header.module.css */
+.authButton {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: none;
+  color: #4a90e2;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.authButton:hover {
+  text-decoration: underline;
+}
